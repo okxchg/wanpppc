@@ -1,0 +1,59 @@
+wanpppc.pl is UPnP WANConnectionDevice device controller which implements 
+WANPPPConnection service. 
+
+For further details see:
+http://upnp.org/specs/gw/UPnP-gw-WANPPPConnection-v1-Service.pdf
+http://upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.1.pdf
+
+It's written in pure core perl and no additional modules are needed. It uses
+builting XML::Tiny to parse xml so it will run even in very old perl 
+environments. It's meant to be distributed as single script with no dependencies
+except perl core so please keep that in mind if you are introducing any changes.
+
+USAGE
+_____
+
+You can get list of supported actions and usage information by executing 
+wanppc.pl without arguments. 
+
+HOST argument has to have format of <hostname>:<port> where hostname can also
+be IPv4 address in dot-decimal notation. Note that port is not optional.
+
+User interface and output is not really user-friendly and requires some
+knowledge of UPnP stack (see links above).
+
+Example:
+
+$ perl wanpppc.pl 192.168.1.1:80 /upnp/control?WANPPPConnection GetExternalIPAddress 
+GetExternalIPAddressResponse: 
+    NewExternalIPAddress: 84.47.61.244
+$
+
+TIPS
+____
+
+* SOAP response parsing is not really robust and can misbehave. It uses built-in
+  XML::Tiny module so if you are experiencing errors on valid responses set
+  $DEBUG in wanpppc.pl to true value to output raw response.
+
+TODO (in order of importance):
+_____________________________
+
+* Use more CPAN and App::FatPacker?
+* Support automatic multicast/unicast and bruteforce discovery of control url
+* Support all standard actions of WANPPConnection service
+* Support other XML parsing modules if found installed
+* Support UPnP eventing?
+* Make interface more user-friendly 
+* Support IPv6 
+
+TESTED WITH
+___________
+
+* Some old Pirelli router (couldn't find model number)
+* Thomson TG585 v7 
+
+AUTHOR
+______
+
+Oliver Kindernay <xchg@jabbim.sk>
