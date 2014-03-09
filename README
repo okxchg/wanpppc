@@ -1,3 +1,5 @@
+This is old, not robust and should be rewrote. But it kinda works.
+
 wanpppc.pl is UPnP WANConnectionDevice device controller which implements 
 WANPPPConnection service. 
 
@@ -5,10 +7,11 @@ For further details see:
 http://upnp.org/specs/gw/UPnP-gw-WANPPPConnection-v1-Service.pdf
 http://upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.1.pdf
 
-It's written in pure core perl and no additional modules are needed. It uses
-builting XML::Tiny to parse xml so it will run even in very old perl 
-environments. It's meant to be distributed as single script with no dependencies
-except perl core so please keep that in mind if you are introducing any changes.
+It's written in pure core perl (actualy IO::Scalar is not core as I found out)
+and no additional modules are needed. It uses builting XML::Tiny to parse xml
+so it will run even in very old perl environments. It's meant to be distributed
+as single script with no dependencies except perl core so please keep that in
+mind if you are introducing any changes.
 
 USAGE
 _____
